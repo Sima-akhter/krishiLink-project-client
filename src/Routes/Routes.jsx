@@ -29,7 +29,8 @@ const router = createBrowserRouter([
 
         {
             path: '/allCrops',
-            element: <AllCrops></AllCrops>
+            element: <AllCrops></AllCrops>,
+            loader: ()=> fetch('http://localhost:3000/krishiLink')
         },
 
         {

@@ -71,16 +71,36 @@ const Navber = () => {
                                 <li>
                                     <MyLink to={'/allCrops'} >All Crops</MyLink>
                                 </li>
-                                <li>
+
+                                {
+                                    user && <> 
+                                    
+                                    <li>
+                                    <MyLink to={'/addCrops'} >Add Crops</MyLink>
+                                </li>
+                                    <li>
+                                    <MyLink to={'/myPosts'} >My Posts</MyLink>
+                                </li>
+                                    <li>
+                                    <MyLink to={'/myInterests'} >My Interests</MyLink>
+                                </li>
+                                  
+                                    <li>
                                     <MyLink to={'/profile'} >Profile</MyLink>
                                 </li>
+                                    </>
+                                }
+
+                                {/* <li>
+                                    <MyLink to={'/profile'} >Profile</MyLink>
+                                </li> */}
                             </ul>
 
                         </div>
 
-                        <div className='hidden md:block'>
+                        {/* <div className='hidden md:block'>
                             {user && user.email}
-                        </div>
+                        </div> */}
 
                         <div className='w-[44px] h-[44px] '>
                             <MyLink to="/profile"><img className='w-full rounded-full' src={`${user ? user.photoURL : 'https://img.icons8.com/?size=100&id=12438&format=png&color=000000'}`} alt="" /></MyLink>
