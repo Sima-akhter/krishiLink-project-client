@@ -1,46 +1,46 @@
-import React, { use } from 'react'
+import React from 'react'
+import { useLoaderData } from 'react-router'
 import { toast } from 'react-toastify'
-import { AuthContext } from '../Provaider/AuthProvider'
 
-const AddCrops = () => {
-    const { user } = use(AuthContext)
+const UpdateCrops = () => {
+    const data = useLoaderData()
+    
+   
 
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+  const handleSubmit = (e) =>{
+    e.preventDefault()
 
-        const formData = {
-            name: e.target.name.value,
-            type: e.target.type.value,
-            pricePerUnit: e.target.pricePerUnit.value,
-            unit: e.target.unit.value,
-            quantity: e.target.quantity.value,
-            description: e.target.description.value,
-            location: e.target.location.value,
-            image: e.target.image.value,
-            owner: {
-                ownerEmail: user.email,
-                ownerName: user.displayName,
-            }
+    const formData = {
+        name: e.target.name.value,
+        type: e.target.type.value,
+        pricePerUnit: e.target.pricePerUnit.value,
+        unit: e.target.unit.value,
+        quantity: e.target.quantity.value,
+        description: e.target.description.value,
+        location: e.target.location.value,
+        image: e.target.image.value,
+       
 
-        }
-
-        fetch('http://localhost:3000/krishiLink', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                toast.success('successfully added!')
-                console.log(data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
     }
+
+    fetch(`http://localhost:3000/krishiLink/${data.result._id}`, {
+        method:"PUT",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        toast.success('successfully added!')
+        console.log(data)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+  }
+
 
     return (
         <div>
@@ -56,6 +56,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Crop Name</label>
                             <input
+                             defaultValue={data?.result?.name}
                                 type="text"
                                 name="name"
                                 required
@@ -68,7 +69,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Crop Type</label>
                             <select
-                                defaultValue=""
+                                defaultValue={data?.result?.name}
                                 name="type"
                                 required
                                 className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
@@ -89,6 +90,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Price per Unit</label>
                             <input
+                             defaultValue={data?.result?.pricePerUnit}
                                 type="number"
                                 name="pricePerUnit"
                                 required
@@ -101,7 +103,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Unit</label>
                             <select
-                                defaultValue=""
+                                defaultValue={data?.result?.unit}
                                 name="unit"
                                 required
                                 className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
@@ -119,6 +121,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Estimated Quantity</label>
                             <input
+                                  defaultValue={data?.result?.quantity}
                                 type="number"
                                 name="quantity"
                                 required
@@ -131,6 +134,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Description</label>
                             <textarea
+                             defaultValue={data?.result?.description}
                                 name="description"
                                 required
                                 rows="3"
@@ -143,6 +147,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Location</label>
                             <input
+                             defaultValue={data?.result?.location}
                                 type="text"
                                 name="location"
                                 required
@@ -155,6 +160,7 @@ const AddCrops = () => {
                         <div>
                             <label className="label font-medium">Image URL</label>
                             <input
+                             defaultValue={data?.result?.image}
                                 type="url"
                                 name="image"
                                 required
@@ -173,11 +179,8 @@ const AddCrops = () => {
                     </form>
                 </div>
             </div>
-
-
-
         </div>
     )
 }
 
-export default AddCrops
+export default UpdateCrops

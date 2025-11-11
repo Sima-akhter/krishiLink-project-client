@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLoaderData } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 
 const CropsDetails = () => {
     const data = useLoaderData()
@@ -19,7 +19,8 @@ const CropsDetails = () => {
     <p>{krishiLink.type}</p>
     <p>{krishiLink.description}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Watch</button>
+        <Link to={`/updateCrops/${krishiLink._id} `} className="btn btn-primary">Update</Link>
+      <button className="btn btn-primary">Deleted</button>
     </div>
   </div>
 </div>

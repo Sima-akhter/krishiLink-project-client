@@ -12,6 +12,8 @@ import PrivateRoute from "../Pages/PrivateRoute";
 import MyProfile from "../Pages/MyProfile";
 import AddCrops from "../Pages/AddCrops";
 import CropsDetails from "../Pages/CropsDetails";
+import UpdateCrops from "../Pages/UpdateCrops";
+import MyPost from "../Pages/MyPost";
 
 
 
@@ -24,7 +26,10 @@ const router = createBrowserRouter([
     children:[
         {
             index: true,
-            element: <Home></Home>
+            element: <Home></Home>,
+            loader: ()=> fetch('http://localhost:3000/latestKrishi')
+
+
         },
 
 
@@ -59,6 +64,26 @@ const router = createBrowserRouter([
             </PrivateRoute>
         ),
         loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`)
+
+       },
+
+       {
+        path: '/updateCrops/:id',
+        element: (
+            <PrivateRoute>
+                <UpdateCrops></UpdateCrops>
+            </PrivateRoute>
+        ),
+         loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`)
+
+       },
+       {
+        path: '/my-posted',
+        element: (
+            <PrivateRoute>
+                <MyPost></MyPost>
+            </PrivateRoute>
+        ),
 
        },
 

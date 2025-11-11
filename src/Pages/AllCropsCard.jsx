@@ -11,7 +11,7 @@ const AllCropsCard = ({krishiLink}) => {
     <img
       src={image}
       alt="Shoes"
-      className="rounded-xl" />
+      className="rounded-xl w-full h-[250px] object-cover" />
   </figure>
   <div className="card-body ">
     <h2 className="card-title">{name}</h2>

@@ -79,7 +79,7 @@ const Navber = () => {
                                     <MyLink to={'/addCrops'} >Add Crops</MyLink>
                                 </li>
                                     <li>
-                                    <MyLink to={'/myPosts'} >My Posts</MyLink>
+                                    <MyLink to={'/my-posted'} >My Posts</MyLink>
                                 </li>
                                     <li>
                                     <MyLink to={'/myInterests'} >My Interests</MyLink>
