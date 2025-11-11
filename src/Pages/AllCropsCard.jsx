@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const AllCropsCard = ({krishiLink}) => {
-    const {name, image, description, pricePerUnit, unit, location, quantity} = krishiLink
+    const {name, image, description, pricePerUnit, unit, location, quantity, _id} = krishiLink
   return (
     <div>
 
@@ -22,7 +23,7 @@ const AllCropsCard = ({krishiLink}) => {
 
     <p>Description : <span>{description}</span></p>
     <div className="card-actions">
-      <button className="btn bg-green-800 text-white w-full">View Details</button>
+      <Link to={`/cropsDetails/${_id}`} className="btn bg-green-800 text-white w-full">View Details</Link>
     </div>
   </div>
 </div>

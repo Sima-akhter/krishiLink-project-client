@@ -10,6 +10,8 @@ import Register from "../Pages/Register";
 import ErrorPages from "../Pages/ErrorPages";
 import PrivateRoute from "../Pages/PrivateRoute";
 import MyProfile from "../Pages/MyProfile";
+import AddCrops from "../Pages/AddCrops";
+import CropsDetails from "../Pages/CropsDetails";
 
 
 
@@ -40,7 +42,25 @@ const router = createBrowserRouter([
             </PrivateRoute>
         },
 
-       
+       {
+        path: '/addCrops',
+        element:(
+            <PrivateRoute>
+                <AddCrops></AddCrops>
+            </PrivateRoute>
+        ),
+       },
+
+       {
+        path: '/cropsDetails/:id',
+        element: (
+            <PrivateRoute>
+                <CropsDetails></CropsDetails>
+            </PrivateRoute>
+        ),
+        loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`)
+
+       },
 
         {
             path: '/forgotPassword',
