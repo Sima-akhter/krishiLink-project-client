@@ -109,8 +109,8 @@ const Navber = () => {
 
                         <div>
                             {user ? (
-                                <button onClick={handleLogOut} className="btn bg-green-800 hover:bg-green-400 text-white">LogOut</button>
-                            ) : (<><div className='flex flex-col md:flex-row'><Link to='/auth/login' className="btn bg-green-800 hover:bg-green-400 text-white">Login</Link><Link to='/auth/register' className='btn bg-green-800 hover:bg-green-400 text-white'>Register</Link></div></>)}
+                                <button onClick={handleLogOut} className="btn text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300">LogOut</button>
+                            ) : (<><div className='flex flex-col md:flex-row gap-2'><Link to='/auth/login' className="btn text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300">Login</Link><Link to='/auth/register' className='btn text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300'>Register</Link></div></>)}
                         </div>
 
                         

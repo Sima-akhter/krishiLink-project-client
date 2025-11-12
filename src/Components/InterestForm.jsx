@@ -103,7 +103,7 @@ const InterestForm = ({ pricePerUnit, _id, owner }) => {
 
                 <button
                     type="submit"
-                    className="w-full btn btn-primary text-white font-semibold py-2 px-4 rounded-md transition"
+                    className="w-full btn text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300 font-semibold py-2 px-4 rounded-md "
                     disabled={isSubmitted}
                 >
                     Submit Interest

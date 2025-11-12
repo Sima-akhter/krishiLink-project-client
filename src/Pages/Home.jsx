@@ -27,7 +27,7 @@ const Home = () => {
 
         </div>
         <div className='flex justify-center items-center mt-10'>
-          <Link to={'/allCrops'} className='bg-green-800 text-white btn' > See All</Link>
+          <Link to={'/allCrops'} className='text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300 btn' > See All</Link>
         </div>
       </div>
       <section>
