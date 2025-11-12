@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router'
 import AllCropsCard from './AllCropsCard'
 import HowItWorks from '../Components/HowItWorks'
 import AgroNews from '../Components/AgroNews'
+import AboutKrishiLink from '../Components/AboutKrishiLink'
 
 const Home = () => {
   const data = useLoaderData()
@@ -36,6 +37,10 @@ const Home = () => {
 
       <section>
         <AgroNews></AgroNews>
+      </section>
+
+      <section>
+        <AboutKrishiLink></AboutKrishiLink>
       </section>
 
     </div >
