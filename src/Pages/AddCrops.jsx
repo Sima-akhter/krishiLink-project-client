@@ -1,9 +1,11 @@
 import React, { use } from 'react'
 import { toast } from 'react-toastify'
 import { AuthContext } from '../Provaider/AuthProvider'
+import { useNavigate } from 'react-router'
 
 const AddCrops = () => {
     const { user } = use(AuthContext)
+    const navigate = useNavigate()
 
 
     const handleSubmit = (e) => {
@@ -21,7 +23,8 @@ const AddCrops = () => {
             owner: {
                 ownerEmail: user.email,
                 ownerName: user.displayName,
-            }
+            },
+            interest: []
 
         }
 
@@ -35,6 +38,7 @@ const AddCrops = () => {
             .then(res => res.json())
             .then(data => {
                 toast.success('successfully added!')
+                navigate('/my-posted')
                 console.log(data)
             })
             .catch(err => {

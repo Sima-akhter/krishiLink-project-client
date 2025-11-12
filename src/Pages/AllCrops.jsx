@@ -10,7 +10,7 @@ const AllCrops = () => {
 
 
   return (
-    <div className='bg-green-100'>
+    <div className='py-16 bg-gradient-to-b from-white to-green-50'>
 
       <h1 className='text-2xl font-bold text-green-800 text-shadow-2xs text-center '>KrishiLink Farmer's All Crops</h1>
 
@@ -34,7 +34,7 @@ const AllCrops = () => {
 
 
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10'>
         {
           data.map(krishiLink => <AllCropsCard key={krishiLink._id} krishiLink={krishiLink}></AllCropsCard>)
         }
