@@ -57,7 +57,7 @@ const EditProfile = () => {
                                 <input name='photo' type="text" className="input" placeholder="Photo URL" />
 
 
-                                <button type='submit' className="btn bg-blue-800 hover:bg-blue-500 mt-4 text-white">Update Information</button>
+                                <button type='submit' className="btn bg-gradient-to-b from-green-700 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300 mt-4">Update Information</button>
 
 
                             </fieldset>
