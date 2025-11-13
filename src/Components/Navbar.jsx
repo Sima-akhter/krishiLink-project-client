@@ -4,9 +4,14 @@ import { Link } from "react-router";
 import { AuthContext } from "../Provaider/AuthProvider";
 import { use } from "react";
 import { toast } from "react-toastify";
-
-// React Icons
-import { FaHome, FaSeedling, FaUserCircle, FaPlusCircle, FaClipboardList, FaHeart } from "react-icons/fa";
+import {
+  FaHome,
+  FaSeedling,
+  FaUserCircle,
+  FaPlusCircle,
+  FaClipboardList,
+  FaHeart,
+} from "react-icons/fa";
 
 const Navber = () => {
   const { user, logOut } = use(AuthContext);
@@ -19,16 +24,12 @@ const Navber = () => {
 
   return (
     <div className="bg-gradient-to-b from-green-100 to-white shadow-md sticky top-0 z-50">
-      <div className="navbar w-11/12 mx-auto py-3">
+      <div className="navbar w-11/12 mx-auto py-3 flex flex-wrap justify-between items-center">
         {/* Left Side */}
-        <div className="navbar-start">
-          {/* Mobile menu */}
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden"
-            >
+        <div className="flex items-center gap-2">
+          {/* Mobile Dropdown */}
+          <div className="dropdown lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-green-800"
@@ -45,7 +46,7 @@ const Navber = () => {
               </svg>
             </div>
             <ul
-              tabIndex="-1"
+              tabIndex={-1}
               className="menu menu-sm dropdown-content bg-white rounded-xl z-10 mt-3 w-52 p-2 shadow-lg border border-green-100"
             >
               <li>
@@ -80,30 +81,58 @@ const Navber = () => {
                       <FaUserCircle className="text-green-700" /> Profile
                     </MyLink>
                   </li>
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="w-full text-left text-green-700 hover:bg-green-100 rounded-md p-1"
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </>
+              )}
+              {!user && (
+                <>
+                  <li>
+                    <MyLink to="/auth/login">Login</MyLink>
+                  </li>
+                  <li>
+                    <MyLink to="/auth/register">Register</MyLink>
+                  </li>
                 </>
               )}
             </ul>
           </div>
 
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img className="w-[70px] rounded-full" src={logo} alt="logo" />
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              className="w-10 sm:w-14 md:w-16 rounded-full"
+              src={logo}
+              alt="logo"
+            />
             <h1 className="text-2xl font-bold text-green-800 tracking-wide">
               Krishi<span className="text-green-600">Link</span>
             </h1>
-          </div>
+          </Link>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="navbar-center hidden lg:flex">
+        {/* Center (Visible on md & lg) */}
+        <div className="hidden md:flex">
           <ul className="menu menu-horizontal px-1 text-[16px] font-medium text-gray-700">
             <li>
-              <MyLink to="/" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+              <MyLink
+                to="/"
+                className="flex items-center gap-2 hover:text-green-700 transition-colors"
+              >
                 <FaHome className="text-green-700" /> Home
               </MyLink>
             </li>
             <li>
-              <MyLink to="/allCrops" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+              <MyLink
+                to="/allCrops"
+                className="flex items-center gap-2 hover:text-green-700 transition-colors"
+              >
                 <FaSeedling className="text-green-700" /> All Crops
               </MyLink>
             </li>
@@ -111,22 +140,34 @@ const Navber = () => {
             {user && (
               <>
                 <li>
-                  <MyLink to="/addCrops" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+                  <MyLink
+                    to="/addCrops"
+                    className="flex items-center gap-2 hover:text-green-700 transition-colors"
+                  >
                     <FaPlusCircle className="text-green-700" /> Add Crops
                   </MyLink>
                 </li>
                 <li>
-                  <MyLink to="/my-posted" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+                  <MyLink
+                    to="/my-posted"
+                    className="flex items-center gap-2 hover:text-green-700 transition-colors"
+                  >
                     <FaClipboardList className="text-green-700" /> My Posts
                   </MyLink>
                 </li>
                 <li>
-                  <MyLink to="/myInterests" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+                  <MyLink
+                    to="/myInterests"
+                    className="flex items-center gap-2 hover:text-green-700 transition-colors"
+                  >
                     <FaHeart className="text-green-700" /> My Interests
                   </MyLink>
                 </li>
                 <li>
-                  <MyLink to="/profile" className="flex items-center gap-2 hover:text-green-700 transition-colors">
+                  <MyLink
+                    to="/profile"
+                    className="flex items-center gap-2 hover:text-green-700 transition-colors"
+                  >
                     <FaUserCircle className="text-green-700" /> Profile
                   </MyLink>
                 </li>
@@ -136,19 +177,21 @@ const Navber = () => {
         </div>
 
         {/* Right Side */}
-        <div className="navbar-end flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           {/* Profile Image */}
-          <MyLink to="/profile">
-            <img
-              className="w-10 h-10 rounded-full border border-green-400 object-cover shadow-sm"
-              src={
-                user?.photoURL
-                  ? user.photoURL
-                  : "https://img.icons8.com/?size=100&id=12438&format=png&color=000000"
-              }
-              alt="profile"
-            />
-          </MyLink>
+          {user && (
+            <MyLink to="/profile">
+              <img
+                className="w-10 h-10 rounded-full border border-green-400 object-cover shadow-sm"
+                src={
+                  user?.photoURL
+                    ? user.photoURL
+                    : "https://img.icons8.com/?size=100&id=12438&format=png&color=000000"
+                }
+                alt="profile"
+              />
+            </MyLink>
+          )}
 
           {/* Buttons */}
           {user ? (
@@ -159,7 +202,7 @@ const Navber = () => {
               Log Out
             </button>
           ) : (
-            <div className="flex flex-col md:flex-row gap-2">
+            <div className="flex gap-2">
               <Link
                 to="/auth/login"
                 className="btn text-white border-none bg-gradient-to-b from-green-700 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300"
