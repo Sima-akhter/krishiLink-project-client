@@ -24,7 +24,7 @@ const UpdateCrops = () => {
 
     }
 
-    fetch(`http://localhost:3000/krishiLink/${data.result._id}`, {
+    fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${data.result._id}`, {
         method:"PUT",
         headers:{
             "Content-Type": "application/json",

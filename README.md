@@ -4,7 +4,7 @@ KrishiLink is a full-stack web application designed to connect farmers, buyers, 
 It enables users to post, view, and manage crops; express buying interest; and streamline the communication between producers and buyers.
 
 # Live URL
-**Frontend (Live Site):** [Click here to visit KrishiLink Project](https://krishilink.web.app)
+**Frontend (Live Site):** [Click here to visit KrishiLink Project](https://keen-zabaione-1adb31.netlify.app/)
 
 ## Tech Stack
 

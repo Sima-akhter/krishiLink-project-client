@@ -13,7 +13,7 @@ const MyPost = () => {
     useEffect(() => {
         if (user?.email) {
             setLoading(true)
-            fetch(`http://localhost:3000/my-posted?email=${user.email}`)
+            fetch(`https://krishi-link-project-server.vercel.app/my-posted?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setProducts(data)
@@ -47,7 +47,7 @@ const MyPost = () => {
             image: form.image.value,
         }
 
-        fetch(`http://localhost:3000/krishiLink/${selectedProduct._id}`, {
+        fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${selectedProduct._id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedProduct)
@@ -80,7 +80,7 @@ const MyPost = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/krishiLink/${id}`, {
+                fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-type": "application/json",

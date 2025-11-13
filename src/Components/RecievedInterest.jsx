@@ -5,7 +5,7 @@ const RecievedInterest = ({ _id, owner }) => {
     const [quantity, setQuantity] = useState(null)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/krishiLink/${_id}/received-interests?email=${owner.ownerEmail}`)
+        fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${_id}/received-interests?email=${owner.ownerEmail}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -15,7 +15,7 @@ const RecievedInterest = ({ _id, owner }) => {
     }, [_id, owner.ownerEmail])
 
     const handleStatusUpdate = (interestId, newStatus) => {
-        fetch(`http://localhost:3000/krishiLink/${_id}/interest-status`, {
+        fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${_id}/interest-status`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

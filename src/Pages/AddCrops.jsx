@@ -30,7 +30,7 @@ const AddCrops = () => {
 
         }
 
-        fetch('http://localhost:3000/krishiLink', {
+        fetch('https://krishi-link-project-server.vercel.app/krishiLink', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

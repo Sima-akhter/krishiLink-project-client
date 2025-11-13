@@ -12,7 +12,7 @@ const MyInterest = () => {
     if (!user?.email) return;
 
     setLoading(true);
-    fetch("http://localhost:3000/krishiLink")
+    fetch("https://krishi-link-project-server.vercel.app/krishiLink")
       .then((res) => res.json())
       .then((data) => {
         const myInterests = data.filter(

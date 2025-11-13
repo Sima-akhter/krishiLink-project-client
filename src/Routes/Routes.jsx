@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         {
             index: true,
             element: <Home></Home>,
-            loader: ()=> fetch('http://localhost:3000/latestKrishi'),
+            loader: ()=> fetch('https://krishi-link-project-server.vercel.app/latestKrishi'),
             hydrateFallbackElement: <Loading></Loading>
 
         },
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         {
             path: '/allCrops',
             element: <AllCrops></AllCrops>,
-            loader: ()=> fetch('http://localhost:3000/krishiLink'),
+            loader: ()=> fetch('https://krishi-link-project-server.vercel.app/krishiLink'),
             hydrateFallbackElement: <Loading></Loading>
         },
 
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
                 <CropsDetails></CropsDetails>
             </PrivateRoute>
         ),
-        loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`),
+        loader:({params}) => fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>
 
        },
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
                 <UpdateCrops></UpdateCrops>
             </PrivateRoute>
         ),
-         loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`),
+         loader:({params}) => fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${params.id}`),
          hydrateFallbackElement: <Loading></Loading>
 
        },

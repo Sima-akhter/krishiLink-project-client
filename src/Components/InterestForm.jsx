@@ -11,7 +11,7 @@ const InterestForm = ({ pricePerUnit, _id, availableQuantity }) => {
   
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/krishiLink/${_id}`)
+      fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${_id}`)
         .then((res) => res.json())
         .then((data) => {
           const alreadyInterested = data?.result?.interest?.some(
@@ -43,7 +43,7 @@ const InterestForm = ({ pricePerUnit, _id, availableQuantity }) => {
       status: 'pending',
     };
 
-    fetch(`http://localhost:3000/krishiLink/${_id}/interest`, {
+    fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${_id}/interest`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
