@@ -143,7 +143,7 @@ const MyPost = () => {
                                     <td className="px-6 py-4 text-sm text-gray-700 space-x-2">
                                         <button
                                             onClick={() => handleModalOpen(krishilink)}
-                                            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+                                            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
                                         >
                                             Edit
                                         </button>
