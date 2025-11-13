@@ -14,6 +14,7 @@ import AddCrops from "../Pages/AddCrops";
 import CropsDetails from "../Pages/CropsDetails";
 import UpdateCrops from "../Pages/UpdateCrops";
 import MyPost from "../Pages/MyPost";
+import EditProfile from "../Pages/EditProfile";
 
 
 
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
             path: '/forgotPassword',
             element: <ForgotPassword></ForgotPassword>
         },
+        {
+            path: '/updateInformation',
+            element: <EditProfile></EditProfile>
+        }
 
     ]
   },
