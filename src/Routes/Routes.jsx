@@ -15,6 +15,7 @@ import CropsDetails from "../Pages/CropsDetails";
 import UpdateCrops from "../Pages/UpdateCrops";
 import MyPost from "../Pages/MyPost";
 import EditProfile from "../Pages/EditProfile";
+import MyInterest from "../Pages/MyInterest";
 
 
 
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         {
             path: '/updateInformation',
             element: <EditProfile></EditProfile>
+        },
+        {
+            path: '/myInterests',
+            element: <MyInterest></MyInterest>
         }
 
     ]

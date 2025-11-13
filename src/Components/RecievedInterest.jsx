@@ -1,68 +1,117 @@
 import React, { useEffect, useState } from 'react'
-import { data } from 'react-router'
 
 const RecievedInterest = ({ _id, owner }) => {
-
     const [interests, setInterests] = useState([])
-
-    console.log(interests);
-    
-
-
+    const [quantity, setQuantity] = useState(null)
 
     useEffect(() => {
         fetch(`http://localhost:3000/krishiLink/${_id}/received-interests?email=${owner.ownerEmail}`)
             .then(res => res.json())
             .then(data => {
-console.log(data);
-
-
-                setInterests(data.interests)
+                if (data.success) {
+                    setInterests(data.interests)
+                }
             })
     }, [_id, owner.ownerEmail])
 
+    const handleStatusUpdate = (interestId, newStatus) => {
+        fetch(`http://localhost:3000/krishiLink/${_id}/interest-status`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ interestId, status: newStatus }),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    
+                    setInterests(prev =>
+                        prev.map(i =>
+                            i._id === interestId ? { ...i, status: newStatus } : i
+                        )
+                    )
+                    
+                    if (data.newQuantity) setQuantity(data.newQuantity)
+                }
+            })
+    }
+
     return (
-        <div>
-            <h2>Received Interests for Product</h2>
+        <div className="p-6">
+            <h2 className="text-xl font-semibold mb-4">
+                Received Interests
+            </h2>
+
+            {quantity && (
+                <p className="text-green-700 font-semibold mb-3">
+                    Remaining Quantity: {quantity}
+                </p>
+            )}
+
             {interests.length === 0 ? (
                 <p>No interests received yet.</p>
             ) : (
-                <table className="table-auto w-full border-collapse">
-                    <thead>
-                        <tr>
-                            <th className="border p-2">Buyer Name</th>
-                            <th className="border p-2">Quantity</th>
-                            <th className="border p-2">Message</th>
-                            <th className="border p-2">Status</th>
-                            <th className="border p-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {interests.map((interest) => (
-                            <tr key={interest._id}>
-                                <td className="border p-2">{interest.userName}</td>
-                                <td className="border p-2">{interest.quantity}</td>
-                                <td className="border p-2">{interest.message}</td>
-                                <td className="border p-2">{interest.status}</td>
-                                <td className="border p-2">
-                                    
-                                    <button
-                                        className="bg-green-500 text-white px-2 py-1 rounded"
-                                       
-                                    >
-                                        Accept
-                                    </button>
-                                    <button
-                                        className="bg-red-500 text-white px-2 py-1 rounded ml-2"
-                                        
-                                    >
-                                        Reject
-                                    </button>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
+                        <thead className="bg-green-700 text-white">
+                            <tr>
+                                <th className="py-2 px-3 text-left">Buyer Name</th>
+                                <th className="py-2 px-3 text-left">Quantity</th>
+                                <th className="py-2 px-3 text-left">Message</th>
+                                <th className="py-2 px-3 text-left">Status</th>
+                                <th className="py-2 px-3 text-left">Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {interests.map((interest) => (
+                                <tr key={interest._id} className="border-b hover:bg-gray-50">
+                                    <td className="border px-3 py-2">{interest.userName}</td>
+                                    <td className="border px-3 py-2">{interest.quantity}</td>
+                                    <td className="border px-3 py-2">{interest.message}</td>
+                                    <td className="border px-3 py-2">
+                                        <span
+                                            className={`px-2 py-1 rounded text-sm font-medium ${interest.status === "pending"
+                                                    ? "bg-yellow-100 text-yellow-800"
+                                                    : interest.status === "accepted"
+                                                        ? "bg-green-100 text-green-800"
+                                                        : "bg-red-100 text-red-800"
+                                                }`}
+                                        >
+                                            {interest.status}
+                                        </span>
+                                    </td>
+                                    <td className="border px-3 py-2">
+                                        {interest.status === "pending" ? (
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        handleStatusUpdate(interest._id, "accepted")
+                                                    }
+                                                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded mr-2"
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleStatusUpdate(interest._id, "rejected")
+                                                    }
+                                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                                                >
+                                                    Reject
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <span className="text-gray-400 italic">
+                                                Action completed
+                                            </span>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     )
