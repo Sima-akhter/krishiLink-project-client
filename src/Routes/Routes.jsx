@@ -16,6 +16,7 @@ import UpdateCrops from "../Pages/UpdateCrops";
 import MyPost from "../Pages/MyPost";
 import EditProfile from "../Pages/EditProfile";
 import MyInterest from "../Pages/MyInterest";
+import Loading from "../Pages/Loading";
 
 
 
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
         {
             index: true,
             element: <Home></Home>,
-            loader: ()=> fetch('http://localhost:3000/latestKrishi')
-
+            loader: ()=> fetch('http://localhost:3000/latestKrishi'),
+            hydrateFallbackElement: <Loading></Loading>
 
         },
 
@@ -39,7 +40,8 @@ const router = createBrowserRouter([
         {
             path: '/allCrops',
             element: <AllCrops></AllCrops>,
-            loader: ()=> fetch('http://localhost:3000/krishiLink')
+            loader: ()=> fetch('http://localhost:3000/krishiLink'),
+            hydrateFallbackElement: <Loading></Loading>
         },
 
         {
@@ -65,7 +67,8 @@ const router = createBrowserRouter([
                 <CropsDetails></CropsDetails>
             </PrivateRoute>
         ),
-        loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`)
+        loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>
 
        },
 
@@ -76,7 +79,8 @@ const router = createBrowserRouter([
                 <UpdateCrops></UpdateCrops>
             </PrivateRoute>
         ),
-         loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`)
+         loader:({params}) => fetch(`http://localhost:3000/krishiLink/${params.id}`),
+         hydrateFallbackElement: <Loading></Loading>
 
        },
        {

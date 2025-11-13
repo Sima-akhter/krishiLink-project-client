@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Provaider/AuthProvider';
 
-const InterestForm = ({ pricePerUnit, _id }) => {
+const InterestForm = ({ pricePerUnit, _id, availableQuantity }) => {
   const { user } = useContext(AuthContext);
   const [quantity, setQuantity] = useState(0);
   const [message, setMessage] = useState('');
@@ -28,6 +28,11 @@ const InterestForm = ({ pricePerUnit, _id }) => {
     if (quantity < 1) {
       toast.error('Quantity must be at least 1.');
       return;
+    }
+
+    if(quantity>availableQuantity){
+        toast.error("You can't exceed the available quantity!")
+        return
     }
 
     const interestData = {

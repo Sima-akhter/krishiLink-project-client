@@ -1,18 +1,25 @@
 import React, { useEffect, useRef, useState, useContext } from 'react'
 import { AuthContext } from '../Provaider/AuthProvider'
 import Swal from 'sweetalert2'
+import Loading from './Loading'
 
 const MyPost = () => {
     const { user } = useContext(AuthContext)
     const [products, setProducts] = useState([])
     const [selectedProduct, setSelectedProduct] = useState(null)
+    const [loading, setLoading] = useState(true)
     const modalRef = useRef(null)
 
     useEffect(() => {
         if (user?.email) {
+            setLoading(true)
             fetch(`http://localhost:3000/my-posted?email=${user.email}`)
                 .then(res => res.json())
-                .then(data => setProducts(data))
+                .then(data => {
+                    setProducts(data)
+                    setLoading(false)
+                }
+                )
         }
     }, [user?.email])
 
@@ -27,38 +34,38 @@ const MyPost = () => {
     }
 
     const handleEdit = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const updatedProduct = {
-        name: form.name.value,
-        type: form.type.value,
-        pricePerUnit: form.pricePerUnit.value,
-        unit: form.unit.value,
-        quantity: form.quantity.value,
-        description: form.description.value,
-        location: form.location.value,
-        image: form.image.value,
-    }
-
-    fetch(`http://localhost:3000/krishiLink/${selectedProduct._id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedProduct)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.modifiedCount > 0 || data.success) {
-            setProducts(prev =>
-                prev.map(item =>
-                    item._id === selectedProduct._id ? { ...item, ...updatedProduct } : item
-                )
-            )
-            Swal.fire("Updated!", "Product has been updated successfully!", "success")
-            handleModalClose()
+        e.preventDefault()
+        const form = e.target
+        const updatedProduct = {
+            name: form.name.value,
+            type: form.type.value,
+            pricePerUnit: form.pricePerUnit.value,
+            unit: form.unit.value,
+            quantity: form.quantity.value,
+            description: form.description.value,
+            location: form.location.value,
+            image: form.image.value,
         }
-    })
-    .catch(err => console.error(err))
-}
+
+        fetch(`http://localhost:3000/krishiLink/${selectedProduct._id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0 || data.success) {
+                    setProducts(prev =>
+                        prev.map(item =>
+                            item._id === selectedProduct._id ? { ...item, ...updatedProduct } : item
+                        )
+                    )
+                    Swal.fire("Updated!", "Product has been updated successfully!", "success")
+                    handleModalClose()
+                }
+            })
+            .catch(err => console.error(err))
+    }
 
 
     const handleDelete = (id) => {
@@ -105,6 +112,8 @@ const MyPost = () => {
             }
         });
     }
+
+    if(loading) return <Loading></Loading>
 
     return (
         <div className="p-4">
@@ -164,131 +173,131 @@ const MyPost = () => {
 
                     {selectedProduct && (
                         <form key={selectedProduct._id} onSubmit={handleEdit} className="space-y-4">
-                        {/* Crop Name */}
-                        <div>
-                            <label className="label font-medium">Crop Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                required
-                                defaultValue={selectedProduct.name}
-                                className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                                placeholder="Enter crop name"
-                            />
-                        </div>
+                            {/* Crop Name */}
+                            <div>
+                                <label className="label font-medium">Crop Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    required
+                                    defaultValue={selectedProduct.name}
+                                    className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                    placeholder="Enter crop name"
+                                />
+                            </div>
 
-                        {/* Crop Type */}
-                        <div>
-                            <label className="label font-medium">Crop Type</label>
-                            <select
-                                defaultValue={selectedProduct.type}
-                                name="type"
-                                required
-                                className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                            {/* Crop Type */}
+                            <div>
+                                <label className="label font-medium">Crop Type</label>
+                                <select
+                                    defaultValue={selectedProduct.type}
+                                    name="type"
+                                    required
+                                    className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                >
+                                    <option value="" disabled>
+                                        Select type
+                                    </option>
+                                    <option value="Vegetable">Vegetable</option>
+                                    <option value="Fruit">Fruit</option>
+                                    <option value="Grain">Grain</option>
+                                    <option value="Spice">Spice</option>
+                                    <option value="Flower">Flower</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            {/* Price per unit */}
+                            <div>
+                                <label className="label font-medium">Price per Unit</label>
+                                <input
+                                    type="number"
+                                    name="pricePerUnit"
+                                    required
+                                    defaultValue={selectedProduct.pricePerUnit}
+                                    className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                    placeholder="Enter price per unit"
+                                />
+                            </div>
+
+                            {/* Unit */}
+                            <div>
+                                <label className="label font-medium">Unit</label>
+                                <select
+                                    defaultValue={selectedProduct.unit}
+                                    name="unit"
+                                    required
+                                    className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                >
+                                    <option value="" disabled>
+                                        Select unit
+                                    </option>
+                                    <option value="kg">Kilogram (kg)</option>
+                                    <option value="ton">Ton</option>
+                                    <option value="bag">Bag</option>
+                                </select>
+                            </div>
+
+                            {/* Quantity */}
+                            <div>
+                                <label className="label font-medium">Estimated Quantity</label>
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    required
+                                    defaultValue={selectedProduct.quantity}
+                                    className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                    placeholder="Enter estimated quantity"
+                                />
+                            </div>
+
+                            {/* Description */}
+                            <div>
+                                <label className="label font-medium">Description</label>
+                                <textarea
+                                    name="description"
+                                    required
+                                    rows="3"
+                                    defaultValue={selectedProduct.description}
+                                    className="textarea w-full rounded-2xl focus:border-green-400 focus:outline-green-400 h-[200px]"
+                                    placeholder="Enter description"
+                                ></textarea>
+                            </div>
+
+                            {/* Location */}
+                            <div>
+                                <label className="label font-medium">Location</label>
+                                <input
+                                    type="text"
+                                    name="location"
+                                    required
+                                    defaultValue={selectedProduct.location}
+                                    className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                    placeholder="Enter crop location (e.g., Bogura)"
+                                />
+                            </div>
+
+                            {/* Image URL */}
+                            <div>
+                                <label className="label font-medium">Image URL</label>
+                                <input
+                                    type="url"
+                                    name="image"
+                                    required
+                                    defaultValue={selectedProduct.image}
+                                    className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
+                                    placeholder="https://example.com/image.jpg"
+                                />
+                            </div>
+
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                className="btn w-full text-white border-none bg-gradient-to-b from-green-700 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300"
                             >
-                                <option value="" disabled>
-                                    Select type
-                                </option>
-                                <option value="Vegetable">Vegetable</option>
-                                <option value="Fruit">Fruit</option>
-                                <option value="Grain">Grain</option>
-                                <option value="Spice">Spice</option>
-                                <option value="Flower">Flower</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-
-                        {/* Price per unit */}
-                        <div>
-                            <label className="label font-medium">Price per Unit</label>
-                            <input
-                                type="number"
-                                name="pricePerUnit"
-                                required
-                                defaultValue={selectedProduct.pricePerUnit}
-                                className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                                placeholder="Enter price per unit"
-                            />
-                        </div>
-
-                        {/* Unit */}
-                        <div>
-                            <label className="label font-medium">Unit</label>
-                            <select
-                                defaultValue={selectedProduct.unit}
-                                name="unit"
-                                required
-                                className="select w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                            >
-                                <option value="" disabled>
-                                    Select unit
-                                </option>
-                                <option value="kg">Kilogram (kg)</option>
-                                <option value="ton">Ton</option>
-                                <option value="bag">Bag</option>
-                            </select>
-                        </div>
-
-                        {/* Quantity */}
-                        <div>
-                            <label className="label font-medium">Estimated Quantity</label>
-                            <input
-                                type="number"
-                                name="quantity"
-                                required
-                                defaultValue={selectedProduct.quantity}
-                                className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                                placeholder="Enter estimated quantity"
-                            />
-                        </div>
-
-                        {/* Description */}
-                        <div>
-                            <label className="label font-medium">Description</label>
-                            <textarea
-                                name="description"
-                                required
-                                rows="3"
-                                defaultValue={selectedProduct.description}
-                                className="textarea w-full rounded-2xl focus:border-green-400 focus:outline-green-400 h-[200px]"
-                                placeholder="Enter description"
-                            ></textarea>
-                        </div>
-
-                        {/* Location */}
-                        <div>
-                            <label className="label font-medium">Location</label>
-                            <input
-                                type="text"
-                                name="location"
-                                required
-                                defaultValue={selectedProduct.location}
-                                className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                                placeholder="Enter crop location (e.g., Bogura)"
-                            />
-                        </div>
-
-                        {/* Image URL */}
-                        <div>
-                            <label className="label font-medium">Image URL</label>
-                            <input
-                                type="url"
-                                name="image"
-                                required
-                                defaultValue={selectedProduct.image}
-                                className="input w-full rounded-full focus:border-green-400 focus:outline-green-400"
-                                placeholder="https://example.com/image.jpg"
-                            />
-                        </div>
-
-                        {/* Submit Button */}
-                        <button
-                            type="submit"
-                            className="btn w-full text-white border-none bg-gradient-to-b from-green-700 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300"
-                        >
-                            Add Crop
-                        </button>
-                    </form>
+                                Add Crop
+                            </button>
+                        </form>
                     )}
                 </div>
             </dialog>

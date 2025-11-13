@@ -126,7 +126,7 @@ const MyInterest = () => {
                         className={`px-2 py-1 rounded text-sm font-medium ${
                           myInterest?.status === "pending"
                             ? "bg-yellow-100 text-yellow-800"
-                            : myInterest?.status === "approved"
+                            : myInterest?.status === "accepted"
                             ? "bg-green-100 text-green-800"
                             : "bg-red-100 text-red-800"
                         }`}

@@ -2,9 +2,11 @@ import React, { use } from 'react'
 import { toast } from 'react-toastify'
 import { AuthContext } from '../Provaider/AuthProvider'
 import { useNavigate } from 'react-router'
+import Loading from './Loading'
+
 
 const AddCrops = () => {
-    const { user } = use(AuthContext)
+    const { user, loading } = use(AuthContext)
     const navigate = useNavigate()
 
 
@@ -45,6 +47,8 @@ const AddCrops = () => {
                 console.log(err)
             })
     }
+
+    if(loading) return <Loading></Loading>
 
     return (
         <div>

@@ -2,10 +2,11 @@ import React, { use } from 'react'
 import { AuthContext } from '../Provaider/AuthProvider'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
+import Loading from './Loading'
 
 const EditProfile = () => {
 
-    const { user, updateUser, setUser } = use(AuthContext)
+    const { user, updateUser, setUser, loading } = use(AuthContext)
     const navigate = useNavigate()
 
     const handleUpdate = (e) => {
@@ -33,7 +34,7 @@ const EditProfile = () => {
 
     }
 
-
+    if(loading) return <Loading></Loading>
     return (
 
         <div className='flex justify-center items-center min-h-screen'>

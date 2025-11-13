@@ -5,10 +5,12 @@
 import { use } from "react";
 import { AuthContext } from "../Provaider/AuthProvider";
 import MyLink from "../Components/MyLink";
+import Loading from "./Loading";
 
 const MyProfile = () => {
-    const { user } = use(AuthContext)
-    console.log(user);
+    const { user, loading } = use(AuthContext)
+    
+    if(loading) return <Loading></Loading>
 
     return (
         <div>

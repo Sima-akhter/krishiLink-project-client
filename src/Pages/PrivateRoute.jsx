@@ -13,7 +13,7 @@ const PrivateRoute = ({children}) => {
     
 
 
-    // console.log(user);
+    
 
     const location = useLocation();
 

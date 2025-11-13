@@ -14,7 +14,7 @@ const CropsDetails = () => {
   
   
 
-  const { pricePerUnit, _id, owner } = krishiLink
+  const { pricePerUnit, _id, owner, quantity } = krishiLink
 
   return (
     <div>
@@ -34,8 +34,10 @@ const CropsDetails = () => {
           <p className="text-gray-500 font-medium">{krishiLink.type}</p>
 
           <p className="text-lg font-semibold text-green-600">
-            💰 Price per unit: ${pricePerUnit}
+             Price per unit: ${pricePerUnit}
           </p>
+
+          <p>Quantity:- {krishiLink.quantity}</p>
 
           <p className="text-gray-600 leading-relaxed">
             {krishiLink.description}
@@ -48,7 +50,7 @@ const CropsDetails = () => {
       {
         user.email === krishiLink.owner.ownerEmail ?
           <RecievedInterest _id={_id} owner={owner}></RecievedInterest> :
-          <InterestForm pricePerUnit={pricePerUnit} _id={_id} owner={owner} ></InterestForm>
+          <InterestForm pricePerUnit={pricePerUnit} _id={_id} owner={owner} availableQuantity={quantity}></InterestForm>
       }
 
 
