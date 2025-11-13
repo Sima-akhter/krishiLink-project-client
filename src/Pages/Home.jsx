@@ -26,7 +26,6 @@ const Home = () => {
     <span className='bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-900'>
       Latest Crops Products
     </span>
-    <span className='absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-700 rounded-full'></span>
   </h1>
        </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10'>

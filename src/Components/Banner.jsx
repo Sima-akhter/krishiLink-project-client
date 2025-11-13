@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
-import game1 from '../assets/krishi-img1.png'
-import game2 from '../assets/krishi-img2.png'
-import game3 from '../assets/krishi-img3.png'
+import game1 from '../assets/krishi-img5.png'
+import game2 from '../assets/krishi-img6.png'
+import game3 from '../assets/krishi-img.png'
 import { useState } from "react"
 
 

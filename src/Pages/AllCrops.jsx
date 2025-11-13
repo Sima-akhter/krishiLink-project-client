@@ -12,7 +12,14 @@ const AllCrops = () => {
   return (
     <div className='py-16 bg-gradient-to-b from-white to-green-50'>
 
-      <h1 className='text-2xl font-bold text-green-800 text-shadow-2xs text-center '>KrishiLink Farmer's All Crops</h1>
+ 
+ <div className='flex justify-center items-center '>
+         <h1 className='text-center text-4xl font-extrabold text-green-800 mb-6 relative inline-block '>
+    <span className='bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-900'>
+      KrishiLink Farmer's All Crops
+    </span>
+  </h1>
+       </div>
 
       <div className='flex justify-center items-center mt-10'>
         <label className="input">
