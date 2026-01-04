@@ -63,9 +63,9 @@ const router = createBrowserRouter([
        {
         path: '/cropsDetails/:id',
         element: (
-            <PrivateRoute>
+            
                 <CropsDetails></CropsDetails>
-            </PrivateRoute>
+           
         ),
         loader:({params}) => fetch(`https://krishi-link-project-server.vercel.app/krishiLink/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>
