@@ -1,4 +1,5 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaLeaf } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaLeaf } from "react-icons/fa";
+import { RiTwitterXLine } from "react-icons/ri";
 
 const Footer = () => {
   return (
@@ -41,16 +42,16 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4 text-lime-300">Follow Us</h3>
           <div className="flex gap-4 text-gray-200">
-            <a href="#" className="hover:text-lime-400 transition">
+            <a href="https://www.facebook.com" className="hover:text-lime-400 transition">
               <FaFacebookF size={20} />
             </a>
-            <a href="#" className="hover:text-lime-400 transition">
-              <FaTwitter size={20} />
+            <a href="https://x.com" className="hover:text-lime-400 transition">
+              <RiTwitterXLine size={20}/>
             </a>
-            <a href="#" className="hover:text-lime-400 transition">
+            <a href="https://www.instagram.com" className="hover:text-lime-400 transition">
               <FaInstagram size={20} />
             </a>
-            <a href="#" className="hover:text-lime-400 transition">
+            <a href="https://www.linkedin.com" className="hover:text-lime-400 transition">
               <FaLinkedinIn size={20} />
             </a>
           </div>

@@ -3,9 +3,11 @@ import Banner from '../Components/Banner'
 import { Link, useLoaderData } from 'react-router'
 import AllCropsCard from './AllCropsCard'
 import HowItWorks from '../Components/HowItWorks'
-import AgroNews from '../Components/AgroNews'
 import AboutKrishiLink from '../Components/AboutKrishiLink'
 import WhyChooseUs from '../Components/WhyChooseUs'
+import NewsletterSection from '../Components/NewsletterSection'
+import AgroNewsBlogs from '../Components/AgroNewsBlogs'
+import Faq from '../Components/Faq'
 
 const Home = () => {
   const data = useLoaderData()
@@ -28,9 +30,9 @@ const Home = () => {
     </span>
   </h1>
        </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10'>
           {
-            data.map(krishiLink => <AllCropsCard key={krishiLink._id} krishiLink={krishiLink}></AllCropsCard>)
+            data?.map?.(krishiLink => <AllCropsCard key={krishiLink._id} krishiLink={krishiLink}></AllCropsCard>)
           }
 
         </div>
@@ -38,12 +40,13 @@ const Home = () => {
           <Link to={'/allCrops'} className='text-white border-none bg-gradient-to-b from-green-500 to-green-900 hover:from-green-600 hover:to-green-800 transition-all duration-300 btn' > See All</Link>
         </div>
       </div>
+
       <section>
         <HowItWorks></HowItWorks>
       </section>
 
       <section>
-        <AgroNews></AgroNews>
+        <AgroNewsBlogs></AgroNewsBlogs>
       </section>
 
       <section>
@@ -53,6 +56,13 @@ const Home = () => {
       <section>
         <WhyChooseUs></WhyChooseUs>
       </section>
+      <section>
+        <Faq></Faq>
+      </section>
+
+      <section>
+    <NewsletterSection></NewsletterSection>
+   </section>
 
     </div >
   )

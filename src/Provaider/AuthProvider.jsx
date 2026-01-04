@@ -1,16 +1,10 @@
-// import React, { createContext, useEffect, useState } from 'react'
+
 
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.config";
 
-// import app from '../Firebase/Firebase.config';
 const AuthContext = createContext();
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-
-
-// import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-// import { createContext } from "react";
-
 
 const googleProvider = new GoogleAuthProvider()
 const auth = getAuth(app);

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const AllCropsCard = ({ krishiLink }) => {
-  const { name, image, description, pricePerUnit, unit, location, quantity, _id } = krishiLink
+  const { name, image, description, pricePerUnit, unit, location, _id } = krishiLink
   return (
     <div>
 
@@ -22,24 +22,19 @@ const AllCropsCard = ({ krishiLink }) => {
     <h2 className="text-2xl font-bold text-gray-800 mb-2">{name}</h2>
 
     <p className="text-gray-600">
-      <span className="font-semibold text-gray-800">💰 Price per Unit:</span>{" "}
+      <span className="font-semibold text-gray-800">💰  </span>{" "}
       <span className="text-green-700 font-medium">
         {pricePerUnit}/{unit}
       </span>
     </p>
 
     <p className="text-gray-600">
-      <span className="font-semibold text-gray-800">📦 Quantity:</span>{" "}
-      <span>{quantity}</span>
-    </p>
-
-    <p className="text-gray-600">
-      <span className="font-semibold text-gray-800">📍 Location:</span>{" "}
+      <span className="font-semibold text-gray-800">📍 </span>{" "}
       <span>{location}</span>
     </p>
 
     <p className="text-gray-600 line-clamp-3">
-      <span className="font-semibold text-gray-800">📝 Description:</span>{" "}
+      <span className="font-semibold text-gray-800">📝 </span>{" "}
       {description}
     </p>
 

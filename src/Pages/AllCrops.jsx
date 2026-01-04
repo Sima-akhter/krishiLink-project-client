@@ -5,9 +5,9 @@ import AllCropsCard from "./AllCropsCard";
 const AllCrops = () => {
   const data = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCrops, setFilteredCrops] = useState(data || []);
 
-  
+  const [filteredCrops, setFilteredCrops] = useState(data || []);
+ 
   useEffect(() => {
     if (!searchTerm.trim()) {
       setFilteredCrops(data);
@@ -59,7 +59,7 @@ const AllCrops = () => {
       </div>
 
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 px-5 md:px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 px-5 md:px-10">
         {filteredCrops.length > 0 ? (
           filteredCrops.map((krishiLink) => (
             <AllCropsCard key={krishiLink._id} krishiLink={krishiLink} />

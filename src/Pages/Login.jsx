@@ -1,14 +1,8 @@
-// import React, { use, useRef, useState } from 'react'
-// import { Link, useLocation, useNavigate } from 'react-router'
 
 import { use, useRef, useState } from "react";
 import { AuthContext } from "../Provaider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-
-// import { AuthContext } from '../Provaider/AuthProvider';
-
-// import { toast } from 'react-toastify';
 
 const Login = () => { 
 
@@ -117,3 +111,5 @@ const Login = () => {
 }
 
 export default Login
+
+
