@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../Provaider/AuthProvider";
 import { use } from "react";
 import { toast } from "react-toastify";
+import { MdDashboardCustomize } from "react-icons/md";
 import {
   FaHome,
   FaSeedling,
@@ -134,6 +135,14 @@ const Navber = () => {
                 className="flex items-center gap-2 hover:text-green-700 transition-colors"
               >
                 <FaSeedling className="text-green-700" /> All Crops
+              </MyLink>
+            </li>
+            <li>
+              <MyLink
+                to="/dashboard"
+                className="flex items-center gap-2 hover:text-green-700 transition-colors"
+              >
+                <MdDashboardCustomize className="text-green-700"/> Dashboard
               </MyLink>
             </li>
 

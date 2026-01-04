@@ -17,6 +17,7 @@ import MyPost from "../Pages/MyPost";
 import EditProfile from "../Pages/EditProfile";
 import MyInterest from "../Pages/MyInterest";
 import Loading from "../Pages/Loading";
+import DashboardLayout from "../Layouts/DashboardLayout";
 
 
 
@@ -123,6 +124,16 @@ const router = createBrowserRouter([
             element:<Register></Register>
         }
     ]
+},
+
+//=================Dashboard========================
+{
+path: "/dashboard",
+element: (
+    <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+    </PrivateRoute>
+)
 },
 
 {
